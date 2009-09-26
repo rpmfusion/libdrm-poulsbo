@@ -1,0 +1,104 @@
+Index: libdrm-2.3.0/shared-core/Makefile.am
+===================================================================
+--- libdrm-2.3.0.orig/shared-core/Makefile.am	2009-03-20 16:38:18.000000000 +1100
++++ libdrm-2.3.0/shared-core/Makefile.am	2009-03-20 16:38:50.000000000 +1100
+@@ -36,5 +36,9 @@
+                          sis_drm.h \
+                          via_drm.h \
+                          r300_reg.h \
+-                         via_3d_reg.h
++                         via_3d_reg.h \
++                         psb_drv.h \
++                         psb_drm.h \
++                         psb_reg.h \
++                         psb_schedule.h
+ 
+Index: libdrm-2.3.0/shared-core/Makefile.in
+===================================================================
+--- libdrm-2.3.0.orig/shared-core/Makefile.in	2009-03-20 16:38:18.000000000 +1100
++++ libdrm-2.3.0/shared-core/Makefile.in	2009-03-20 16:38:59.000000000 +1100
+@@ -113,6 +113,7 @@
+ EXEEXT = @EXEEXT@
+ F77 = @F77@
+ FFLAGS = @FFLAGS@
++GREP = @GREP@
+ INSTALL_DATA = @INSTALL_DATA@
+ INSTALL_PROGRAM = @INSTALL_PROGRAM@
+ INSTALL_SCRIPT = @INSTALL_SCRIPT@
+@@ -137,12 +138,9 @@
+ SHELL = @SHELL@
+ STRIP = @STRIP@
+ VERSION = @VERSION@
+-ac_ct_AR = @ac_ct_AR@
+ ac_ct_CC = @ac_ct_CC@
+ ac_ct_CXX = @ac_ct_CXX@
+ ac_ct_F77 = @ac_ct_F77@
+-ac_ct_RANLIB = @ac_ct_RANLIB@
+-ac_ct_STRIP = @ac_ct_STRIP@
+ am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
+ am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
+ am__fastdepCXX_FALSE = @am__fastdepCXX_FALSE@
+@@ -159,24 +157,31 @@
+ build_os = @build_os@
+ build_vendor = @build_vendor@
+ datadir = @datadir@
++datarootdir = @datarootdir@
++docdir = @docdir@
++dvidir = @dvidir@
+ exec_prefix = @exec_prefix@
+ host = @host@
+ host_alias = @host_alias@
+ host_cpu = @host_cpu@
+ host_os = @host_os@
+ host_vendor = @host_vendor@
++htmldir = @htmldir@
+ includedir = @includedir@
+ infodir = @infodir@
+ install_sh = @install_sh@
+ libdir = @libdir@
+ libexecdir = @libexecdir@
++localedir = @localedir@
+ localstatedir = @localstatedir@
+ mandir = @mandir@
+ mkdir_p = @mkdir_p@
+ oldincludedir = @oldincludedir@
++pdfdir = @pdfdir@
+ pkgconfigdir = @pkgconfigdir@
+ prefix = @prefix@
+ program_transform_name = @program_transform_name@
++psdir = @psdir@
+ sbindir = @sbindir@
+ sharedstatedir = @sharedstatedir@
+ sysconfdir = @sysconfdir@
+@@ -188,13 +193,18 @@
+                          i915_drm.h \
+                          mach64_drm.h \
+                          mga_drm.h \
++                         nouveau_drm.h \
+                          r128_drm.h \
+                          radeon_drm.h \
+                          savage_drm.h \
+                          sis_drm.h \
+                          via_drm.h \
+                          r300_reg.h \
+-                         via_3d_reg.h
++                         via_3d_reg.h \
++                         psb_drv.h \
++                         psb_drm.h \
++                         psb_reg.h \
++                         psb_schedule.h
+ 
+ all: all-am
+ 
+@@ -208,9 +218,9 @@
+ 	      exit 1;; \
+ 	  esac; \
+ 	done; \
+-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  shared-core/Makefile'; \
++	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  shared-core/Makefile'; \
+ 	cd $(top_srcdir) && \
+-	  $(AUTOMAKE) --foreign  shared-core/Makefile
++	  $(AUTOMAKE) --gnu  shared-core/Makefile
+ .PRECIOUS: Makefile
+ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
+ 	@case '$?' in \
