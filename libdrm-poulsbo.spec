@@ -3,7 +3,7 @@
 Summary:	Direct Rendering Manager runtime library (for Poulsbo)
 Name:		libdrm-poulsbo
 Version:	2.3.0
-Release:	9%{?dist}
+Release:	10%{?dist}
 License:	MIT
 Group:		System Environment/Libraries
 URL:		http://ppa.launchpad.net/ubuntu-mobile/ubuntu/pool/main/libd/libdrm-poulsbo/
@@ -128,37 +128,40 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/libdrm-poulsbo.pc
 
 %changelog
-* Mon Aug 24 2009 Adam Williamson <awilliam@redhat.com> 2.3.0-9
+* Wed Sep 30 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-10
+- change my email address in changelog to correct one for Fusion
+
+* Mon Aug 24 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-9
 - correct exclusivearch for rpmfusion buildsystem
 - don't install 91-drm-modeset.rules only to delete it later
 
-* Thu Aug 20 2009 Adam Williamson <awilliam@redhat.com> 2.3.0-8
+* Thu Aug 20 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-8
 - exclusivearch ix86 (there's no 64-bit poulsbo hardware)
 - mark config file as config
 
-* Wed Aug 19 2009 Adam Williamson <awilliam@redhat.com> 2.3.0-7
+* Wed Aug 19 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-7
 - put the license in as documentation
 
-* Tue Aug 11 2009 Adam Williamson <awilliam@redhat.com> 2.3.0-6
+* Tue Aug 11 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-6
 - The Let's Stop Smoking Crack release: move the library to libdir/psb
   and use an ld.so.conf.d file, thus avoiding all the obsoletes /
   provides tomfoolery and co-existing peacefully with main libdrm 
   thanks lkundrak for the suggestion
 
-* Mon Aug 10 2009 Adam Williamson <awilliam@redhat.com> 2.3.0-5
+* Mon Aug 10 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-5
 - more outrageous lies in the -devel package
 
-* Mon Aug 10 2009 Adam Williamson <awilliam@redhat.com> 2.3.0-4
+* Mon Aug 10 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-4
 - use ldconfig -X in %post and %postun to (hopefully) work around the
   nasty #513224 in normal use of these packages (this should be the
   only library installed in the initial transaction people use)
 
-* Mon Aug 10 2009 Adam Williamson <awilliam@redhat.com> 2.3.0-3
+* Mon Aug 10 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-3
 - lie outrageously about what we provide to satisfy some dependencies
 
-* Mon Aug 10 2009 Adam Williamson <awilliam@redhat.com> 2.3.0-2
+* Mon Aug 10 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-2
 - obsolete / provide regular libdrm
 
-* Wed May 13 2009 Adam Williamson <awilliam@redhat.com> 2.3.0-1
+* Wed May 13 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-1
 - initial poulsbo libdrm package (from ubuntu-mobile repos)
 
