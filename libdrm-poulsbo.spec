@@ -3,7 +3,7 @@
 Summary:	Direct Rendering Manager runtime library (for Poulsbo)
 Name:		libdrm-poulsbo
 Version:	2.3.0
-Release:	10%{?dist}
+Release:	11%{?dist}
 License:	MIT
 Group:		System Environment/Libraries
 URL:		http://ppa.launchpad.net/ubuntu-mobile/ubuntu/pool/main/libd/libdrm-poulsbo/
@@ -13,6 +13,9 @@ Source1:	psb_drm.h
 Source2:	psb_drv.h
 Source3:	psb_reg.h
 Source4:	psb_schedule.h
+# Don't provide libdrm.so.2 (#1186)
+Source5:	filter-provides.sh
+%global		__find_provides %{SOURCE5}
 Patch0:		libdrm-poulsbo_configure_debian.patch
 Patch1:		libdrm-poulsbo_headers_debian.patch
 Patch2:		libdrm-poulsbo-relocate_headers.patch
@@ -128,6 +131,9 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/libdrm-poulsbo.pc
 
 %changelog
+* Thu Jul 15 2010 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-11
+- don't provide libdrm.so.2 (#1186)
+
 * Wed Sep 30 2009 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-10
 - change my email address in changelog to correct one for Fusion
 
