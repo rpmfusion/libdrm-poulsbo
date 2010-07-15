@@ -15,6 +15,7 @@ Source3:	psb_reg.h
 Source4:	psb_schedule.h
 # Don't provide libdrm.so.2 (#1186)
 Source5:	filter-provides.sh
+%global		_use_internal_dependency_generator 0 
 %global		__find_provides %{SOURCE5}
 Patch0:		libdrm-poulsbo_configure_debian.patch
 Patch1:		libdrm-poulsbo_headers_debian.patch
