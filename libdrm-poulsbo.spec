@@ -3,7 +3,7 @@
 Summary:	Direct Rendering Manager runtime library (for Poulsbo)
 Name:		libdrm-poulsbo
 Version:	2.3.0
-Release:	11%{?dist}
+Release:	12%{?dist}
 License:	MIT
 Group:		System Environment/Libraries
 URL:		http://ppa.launchpad.net/ubuntu-mobile/ubuntu/pool/main/libd/libdrm-poulsbo/
@@ -132,6 +132,9 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/libdrm-poulsbo.pc
 
 %changelog
+* Thu Oct 14 2010 Nicolas Chauvet <kwizart@gmail.com> - 2.3.0-12
+- Rebuilt for gcc bug
+
 * Thu Jul 15 2010 Adam Williamson <adamwill AT shaw DOT ca> 2.3.0-11
 - don't provide libdrm.so.2 (#1186)
 
