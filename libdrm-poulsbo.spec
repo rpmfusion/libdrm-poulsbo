@@ -3,7 +3,7 @@
 Summary:	Direct Rendering Manager runtime library (for Poulsbo)
 Name:		libdrm-poulsbo
 Version:	2.3.0
-Release:	12%{?dist}
+Release:	13%{?dist}
 License:	MIT
 Group:		System Environment/Libraries
 URL:		http://ppa.launchpad.net/ubuntu-mobile/ubuntu/pool/main/libd/libdrm-poulsbo/
@@ -13,10 +13,6 @@ Source1:	psb_drm.h
 Source2:	psb_drv.h
 Source3:	psb_reg.h
 Source4:	psb_schedule.h
-# Don't provide libdrm.so.2 (#1186)
-Source5:	filter-provides.sh
-%global		_use_internal_dependency_generator 0 
-%global		__find_provides %{SOURCE5}
 Patch0:		libdrm-poulsbo_configure_debian.patch
 Patch1:		libdrm-poulsbo_headers_debian.patch
 Patch2:		libdrm-poulsbo-relocate_headers.patch
@@ -29,8 +25,15 @@ ExclusiveArch:  i586
 ExclusiveArch:  i386
 %endif
 
+# Don't provide libdrm.so.2 (#1186)
+# libdrm.so.2 remains required
+%{?filter_setup:
+%filter_from_provides '/libdrm.so.\*/d'
+%filter_setup
+}
+
 Requires:	udev
-Requires:	kernel
+Requires:	psb-kmod
 BuildRequires:	pkgconfig
 BuildRequires:	libtool
 BuildRequires:	autoconf
@@ -38,8 +41,6 @@ BuildRequires:	automake
 BuildRequires:	kernel-headers
 BuildRequires:	libxcb-devel
 BuildRequires:	libudev-devel
-# For the file we can't carry in both
-Requires:	libdrm
 
 %description
 Direct Rendering Manager runtime library. This build is specifically
@@ -132,6 +133,11 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/libdrm-poulsbo.pc
 
 %changelog
+* Mon Feb 14 2011 Nicolas Chauvet <kwizart@gmail.com> - 2.3.0-13
+- Fix Requirement on kernel varriant
+  http://bugzilla.rpmfusion.org/show_bug.cgi?id=1186#c7
+- Update filter provides/requirements
+
 * Thu Oct 14 2010 Nicolas Chauvet <kwizart@gmail.com> - 2.3.0-12
 - Rebuilt for gcc bug
 
